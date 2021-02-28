@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+    {{ block.super }}
+    <!-- <script src="js/main.js"></script> -->
+{% endblock %}
+
+{% block content %}
+
+    <hr>
+    <h2>Car Listing</h2>
+    <hr>
+    <table border="0" style="width: 100%">
+        <tr>
+            <th></th>
+            <th>Brand</th>
+            <th>Name</th>
+            <th>Release Date</th>
+            <th>Initial Price</th>
+            <th>Weight</th>
+            <th>Seats</th>
+            <th>Engine</th>
+        </tr>
+        {% for car in data %}
+            <tr>
+            <td><a href="add_specs/{{ car.id }}">Edit Specification</a></td>
+            <td>{{ car.brand }}</td>
+            <td>{{ car.name }}</td>
+            <td>{{ car.date_of_release }}</td>
+            <td>{{ car.initial_price }}</td>
+            <td>{{ specdata.weight }}</td>
+            <td>{{ specdata.seats }}</td>
+            <td>{{ specdata.engine }}</td>
+        {% endfor %}
+
+        </tr>
+
+
+    </table>
+    <br><br><br>
+
+    <form method="post" action="add_car">
+
+        {% csrf_token %}
+
+        <hr>
+        <h2>Add Car</h2>
+        <hr>
+        <table border="0">
+            <tr>
+                <th>Brand:</th>
+                <td>{{ form.brand }}</td>
+            </tr>
+            <tr>
+                <th>Name:</th>
+                <td>{{ form.name }}</td>
+            </tr>
+            <tr>
+                <th>Release Date:</th>
+                <td>{{ form.date_of_release }}</td>
+            </tr>
+            <tr>
+                <th>Initial Price:</th>
+                <td>{{ form.initial_price }}</td>
+            </tr>
+            <tr>
+                <th></th>
+                <td>
+                    <button type="submit">Add</button>
+                </td>
+            </tr>
+        </table>
+
+    </form>
+
+{% endblock %}

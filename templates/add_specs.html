@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+    {{ block.super }}
+    <!-- <script src="js/main.js"></script> -->
+{% endblock %}
+
+{% block content %}
+    <hr>
+    <h2>Car Specification</h2>
+    <hr>
+    <form method="post" action="update_specs">
+        {% csrf_token %}
+
+        <table border="0">
+            <tr>
+                <th>Car:</th>
+                <td>
+                    <select>
+                        {% for entry in data %}
+                            <option value="{{ entry.id }}">{{ entry.brand }} {{ entry.name }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Weight:</th>
+                <td>{{ formspecs.weight }}</td>
+            </tr>
+            <tr>
+                <th>Seats:</th>
+                <td>{{ formspecs.seats }}</td>
+            </tr>
+            <tr>
+                <th>Engine:</th>
+                <td>{{ formspecs.engine }}</td>
+            </tr>
+            <tr>
+                <th></th>
+                <td>
+                    <button type="submit">Add Specs</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+{% endblock %}
